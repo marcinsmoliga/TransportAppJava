@@ -1,1 +1,3 @@
-.idea
+.ideatarget/
+.idea/
+*.class
