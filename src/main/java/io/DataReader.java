@@ -27,4 +27,8 @@ public class DataReader {
 
 		return new Car(brand, vehicleRegistrationPlate);
 	}
+
+	public void close() {
+		sc.close();
+	}
 }

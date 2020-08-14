@@ -13,6 +13,8 @@ public class Main {
 		Person[] people = new Person[100];
 		people[0] = dataReader.createPerson();
 
+		dataReader.close();
+
 		cars[0].printInfo();
 		people[0].printInfo();
 	}
