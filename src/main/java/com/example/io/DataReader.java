@@ -28,6 +28,12 @@ public class DataReader {
 		return new Car(brand, vehicleRegistrationPlate);
 	}
 
+	public int getInt() {
+		int number = sc.nextInt();
+		sc.nextLine();
+		return number;
+	}
+
 	public void close() {
 		sc.close();
 	}
