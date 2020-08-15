@@ -7,7 +7,7 @@ public class CarDatabase {
 
 	public void addCar(Car car) {
 		if (carNumber > maxCars) {
-			System.err.println("Not enough space in the database! Can not add next car!");
+			System.err.println("Not enough space in the database! Can not add the next car!");
 		} else {
 			cars[carNumber] = car;
 			carNumber++;
