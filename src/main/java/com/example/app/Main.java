@@ -1,7 +1,9 @@
+package com.example.app;
+
 import com.example.model.Car;
 import com.example.model.Person;
 
-import io.DataReader;
+import com.example.io.DataReader;
 
 public class Main {
 	public static void main(String[] args) {
