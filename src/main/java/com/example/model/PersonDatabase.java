@@ -16,7 +16,7 @@ public class PersonDatabase {
 
 	public void printPeople() {
 		for(int i = 0; i < personNumber; i++) {
-			people[1].printInfo();
+			people[i].printInfo();
 		}
 	}
 }

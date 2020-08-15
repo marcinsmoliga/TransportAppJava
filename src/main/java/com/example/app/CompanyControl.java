@@ -38,6 +38,7 @@ public class CompanyControl {
 					break;
 				case exit:
 					exitProgram();
+					break;
 				default:
 					System.err.println("Incorrect input! Please try again.");
 			}
@@ -70,11 +71,12 @@ public class CompanyControl {
 	}
 
 	private void printOptions() {
-		System.out.println("Choose action: ");
 		System.out.println(addCar + " - add car");
 		System.out.println(addPerson + " - add person");
 		System.out.println(showCars + " - show all cars");
 		System.out.println(showPeople + " - show all people");
+		System.out.println(exit + " - exit the program");
+		System.out.print("Choose action: ");
 	}
 
 
