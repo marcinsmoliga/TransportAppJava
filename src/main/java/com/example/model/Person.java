@@ -11,7 +11,8 @@ public class Person {
         this.birthYear = birthYear;
     }
 
-    public void printInfo() {
-        System.out.println("First name: " + firstName + " Last name: " + lastName + " Year of birth: " + birthYear);
+    @Override
+    public String toString() {
+        return "First name: " + firstName + " Last name: " + lastName + " Year of birth: " + birthYear;
     }
 }

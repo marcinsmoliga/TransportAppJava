@@ -24,8 +24,10 @@ public class DataReader {
 		String brand = sc.nextLine();
 		System.out.print("Enter Vehicle Registration Plate: ");
 		String vehicleRegistrationPlate = sc.nextLine();
+		System.out.print("Enter the number of wheels: ");
+		int wheels = getInt();
 
-		return new Car(brand, vehicleRegistrationPlate);
+		return new Car(brand, vehicleRegistrationPlate, wheels);
 	}
 
 	public int getInt() {

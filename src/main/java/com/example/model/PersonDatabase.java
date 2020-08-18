@@ -1,12 +1,12 @@
 package com.example.model;
 
 public class PersonDatabase {
-	private final int maxPeople = 1000;
-	private Person[] people = new Person[maxPeople];
+	private static final int MAX_PEOPLE = 1000;
+	private Person[] people = new Person[MAX_PEOPLE];
 	private int personNumber = 0;
 
 	public void addPerson(Person person) {
-		if (personNumber < maxPeople) {
+		if (personNumber < MAX_PEOPLE) {
 			people[personNumber] = person;
 			personNumber++;
 		} else {
@@ -16,7 +16,7 @@ public class PersonDatabase {
 
 	public void printPeople() {
 		for(int i = 0; i < personNumber; i++) {
-			people[i].printInfo();
+			System.out.println(people[i]);
 		}
 	}
 }

@@ -1,15 +1,19 @@
 package com.example.model;
 
 public class Car {
-    String brand;
-    String vehicleRegistrationPlate;
+    private String brand;
+    private String vehicleRegistrationPlate;
+    private int wheels;
 
-    public Car(final String brand, final String vehicleRegistrationPlate) {
+    public Car(String brand, String vehicleRegistrationPlate, int wheels) {
         this.brand = brand;
         this.vehicleRegistrationPlate = vehicleRegistrationPlate;
+        this.wheels = wheels;
     }
 
-    public void printInfo() {
-        System.out.println("Brand: " + brand + " Vehicle Registration Plate: " + vehicleRegistrationPlate);
+    @Override
+    public String toString() {
+        return "Brand: " + brand + " Vehicle Registration Number: " + vehicleRegistrationPlate
+                + " Number of wheels: " + wheels;
     }
 }

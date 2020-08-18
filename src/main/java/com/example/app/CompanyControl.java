@@ -7,11 +7,11 @@ import com.example.model.Person;
 import com.example.model.PersonDatabase;
 
 public class CompanyControl {
-	private final int exit = 0;
-	private final int addCar = 1;
-	private final int addPerson = 2;
-	private final int showCars = 3;
-	private final int showPeople = 4;
+	private static final int EXIT = 0;
+	private static final int ADD_CAR = 1;
+	private static final int ADD_PERSON = 2;
+	private static final int SHOW_CARS = 3;
+	private static final int SHOW_PEOPLE = 4;
 	private final DataReader dataReader = new DataReader();
 	private final CarDatabase carDatabase = new CarDatabase();
 	private final PersonDatabase personDatabase = new PersonDatabase();
@@ -24,25 +24,25 @@ public class CompanyControl {
 			option = dataReader.getInt();
 
 			switch (option) {
-				case addCar:
+				case ADD_CAR:
 					addNewCar();
 					break;
-				case addPerson:
+				case ADD_PERSON:
 					addNewPerson();
 					break;
-				case showCars:
+				case SHOW_CARS:
 					showAllCars();
 					break;
-				case showPeople:
+				case SHOW_PEOPLE:
 					showAllPeople();
 					break;
-				case exit:
+				case EXIT:
 					exitProgram();
 					break;
 				default:
 					System.err.println("Incorrect input! Please try again.");
 			}
-		} while (option != exit);
+		} while (option != EXIT);
 	}
 
 	private void showAllPeople() {
@@ -71,11 +71,11 @@ public class CompanyControl {
 	}
 
 	private void printOptions() {
-		System.out.println(addCar + " - add car");
-		System.out.println(addPerson + " - add person");
-		System.out.println(showCars + " - show all cars");
-		System.out.println(showPeople + " - show all people");
-		System.out.println(exit + " - exit the program");
+		System.out.println(ADD_CAR + " - add car");
+		System.out.println(ADD_PERSON + " - add person");
+		System.out.println(SHOW_CARS + " - show all cars");
+		System.out.println(SHOW_PEOPLE + " - show all people");
+		System.out.println(EXIT + " - exit the program");
 		System.out.print("Choose action: ");
 	}
 
