@@ -1,4 +1,6 @@
-package com.example.app;
+package com.example.enumPackage;
+
+import com.example.exception.NoSuchOptionException;
 
 public enum Option {
 	EXIT (0, "exit the program"),
@@ -15,9 +17,13 @@ public enum Option {
 		this.description = description;
 	}
 
-	public static Option convertToOption(int number) {
-		Option[] values = Option.values();
-		return values[number];
+	public static Option convertToOption(int number) throws NoSuchOptionException {
+		try {
+			return Option.values()[number];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new NoSuchOptionException("There is no such option as " + number);
+		}
+
 	}
 
 	@Override

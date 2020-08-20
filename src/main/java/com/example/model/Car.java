@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class Car {
+public abstract class Car {
     private String brand;
     private String vehicleRegistrationPlate;
     private int wheels;
