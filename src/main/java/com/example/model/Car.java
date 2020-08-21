@@ -1,6 +1,8 @@
 package com.example.model;
 
-public abstract class Car {
+import java.io.Serializable;
+
+public abstract class Car implements Serializable {
     private String brand;
     private String vehicleRegistrationPlate;
     private int wheels;

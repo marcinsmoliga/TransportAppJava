@@ -1,6 +1,8 @@
 package com.example.model;
 
-public class CarDatabase {
+import java.io.Serializable;
+
+public class CarDatabase implements Serializable {
 	private static final int MAX_CARS = 1000;
 	private Car[] cars = new Car[MAX_CARS];
 	private int carNumber = 0;

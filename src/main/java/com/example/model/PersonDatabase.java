@@ -1,6 +1,8 @@
 package com.example.model;
 
-public class PersonDatabase {
+import java.io.Serializable;
+
+public class PersonDatabase implements Serializable {
 	private static final int MAX_PEOPLE = 1000;
 	private Person[] people = new Person[MAX_PEOPLE];
 	private int personNumber = 0;

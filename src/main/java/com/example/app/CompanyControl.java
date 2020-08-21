@@ -2,22 +2,39 @@ package com.example.app;
 
 import java.util.InputMismatchException;
 
+import com.example.exception.DataExportException;
+import com.example.exception.DataImportException;
 import com.example.exception.NoSuchOptionException;
 import com.example.io.ConsolePrinter;
 import com.example.io.DataReader;
+import com.example.io.file.FileManager;
+import com.example.io.file.FileManagerBuilder;
 import com.example.model.CarDatabase;
 import com.example.model.Person;
 import com.example.model.PersonDatabase;
 import com.example.model.Truck;
 import com.example.model.Van;
 
-public class CompanyControl {
+class CompanyControl {
 	private final ConsolePrinter consolePrinter = new ConsolePrinter();
 	private final DataReader dataReader = new DataReader(consolePrinter);
-	private final CarDatabase carDatabase = new CarDatabase();
+	private CarDatabase carDatabase;
 	private final PersonDatabase personDatabase = new PersonDatabase();
+	private final FileManager fileManager;
 
-	public void printMenu() {
+	public CompanyControl() {
+		fileManager = new FileManagerBuilder(consolePrinter, dataReader).build();
+		try {
+			carDatabase = fileManager.importCarDatabase();
+			consolePrinter.printNextLine("Successfully data imported");
+		} catch (DataImportException e) {
+			consolePrinter.printNextLine(e.getMessage());
+			consolePrinter.printNextLine("A new database has been created");
+			carDatabase = new CarDatabase();
+		}
+	}
+
+	void printMenu() {
 		Option option;
 
 		do {
@@ -25,25 +42,16 @@ public class CompanyControl {
 			option = getOption();
 
 			switch (option) {
-				case ADD_CAR:
+				case ADD_CAR -> {
 					printCarType();
 					CarType carType = getCarType();
 					addNewCar(carType);
-					break;
-				case ADD_PERSON:
-					addNewPerson();
-					break;
-				case SHOW_CARS:
-					showAllCars();
-					break;
-				case SHOW_PEOPLE:
-					showAllPeople();
-					break;
-				case EXIT:
-					exitProgram();
-					break;
-				default:
-					System.err.println("Incorrect input! Please try again.");
+				}
+				case ADD_PERSON -> addNewPerson();
+				case SHOW_CARS -> showAllCars();
+				case SHOW_PEOPLE -> showAllPeople();
+				case EXIT -> exitProgram();
+				default -> System.err.println("Incorrect input! Please try again.");
 			}
 		} while (option != Option.EXIT);
 	}
@@ -80,20 +88,24 @@ public class CompanyControl {
 
 	private void addNewCar(CarType carType) {
 		switch (carType) {
-			case TRUCK:
+			case TRUCK -> {
 				Truck truck = dataReader.createTruck();
 				carDatabase.addCar(truck);
-				break;
-			case VAN:
+			}
+			case VAN -> {
 				Van van = dataReader.createVan();
 				carDatabase.addCar(van);
-				break;
-
-
+			}
 		}
 	}
 
 	private void exitProgram() {
+		try {
+			fileManager.exportCarData(carDatabase);
+			consolePrinter.printNextLine("Successful data write.");
+		} catch (DataExportException e) {
+			consolePrinter.printNextLine(e.getMessage());
+		}
 		dataReader.close();
 		consolePrinter.printNextLine("Quitting the program. The program has closed correctly.");
 
@@ -133,11 +145,11 @@ public class CompanyControl {
 	}
 
 	public enum Option {
-		EXIT (0, "exit the program"),
-		ADD_CAR (1, "add car"),
-		ADD_PERSON (2, "add person"),
-		SHOW_CARS (3, "show all cars"),
-		SHOW_PEOPLE (4, "show all people");
+		EXIT(0, "exit the program"),
+		ADD_CAR(1, "add car"),
+		ADD_PERSON(2, "add person"),
+		SHOW_CARS(3, "show all cars"),
+		SHOW_PEOPLE(4, "show all people");
 
 		private final int optionNumber;
 		private final String description;
