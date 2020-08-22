@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 
 import com.example.exception.DataExportException;
 import com.example.exception.DataImportException;
+import com.example.exception.InvalidDataException;
 import com.example.exception.NoSuchOptionException;
 import com.example.io.ConsolePrinter;
 import com.example.io.DataReader;
@@ -27,7 +28,7 @@ class CompanyControl {
 		try {
 			carDatabase = fileManager.importCarDatabase();
 			consolePrinter.printNextLine("Successfully data imported");
-		} catch (DataImportException e) {
+		} catch (DataImportException | InvalidDataException e) {
 			consolePrinter.printNextLine(e.getMessage());
 			consolePrinter.printNextLine("A new database has been created");
 			carDatabase = new CarDatabase();
@@ -105,6 +106,7 @@ class CompanyControl {
 			consolePrinter.printNextLine("Successful data write.");
 		} catch (DataExportException e) {
 			consolePrinter.printNextLine(e.getMessage());
+			//TODO ask the user if he wants to try saving the data again
 		}
 		dataReader.close();
 		consolePrinter.printNextLine("Quitting the program. The program has closed correctly.");

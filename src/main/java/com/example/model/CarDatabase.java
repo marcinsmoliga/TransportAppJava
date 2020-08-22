@@ -7,6 +7,10 @@ public class CarDatabase implements Serializable {
 	private Car[] cars = new Car[MAX_CARS];
 	private int carNumber = 0;
 
+	public Car[] getCars() {
+		return cars;
+	}
+
 	public void addCar(Car car) {
 		if (carNumber > MAX_CARS) {
 			System.err.println("Not enough space in the database! Can not add the next car!");
