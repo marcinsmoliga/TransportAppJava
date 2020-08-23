@@ -12,7 +12,6 @@ import com.example.exception.DataImportException;
 import com.example.exception.InvalidDataException;
 import com.example.model.Car;
 import com.example.model.CarDatabase;
-import com.example.model.PersonDatabase;
 import com.example.model.Truck;
 import com.example.model.Van;
 
@@ -63,10 +62,6 @@ public class CsvFileManager implements FileManager {
 		return new Truck(brand, vehicleRegistrationPlate, wheels);
 	}
 
-	@Override
-	public PersonDatabase importPersonDatabase() {
-		return null;
-	}
 
 	@Override
 	public void exportCarData(CarDatabase carDatabase) {
@@ -82,10 +77,5 @@ public class CsvFileManager implements FileManager {
 		} catch (IOException e) {
 			throw new DataExportException("Error writing data to the file " + FILE_NAME);
 		}
-	}
-
-	@Override
-	public void exportPersonData(PersonDatabase personDatabase) {
-
 	}
 }

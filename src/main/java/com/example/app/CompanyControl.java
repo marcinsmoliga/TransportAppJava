@@ -11,8 +11,6 @@ import com.example.io.DataReader;
 import com.example.io.file.FileManager;
 import com.example.io.file.FileManagerBuilder;
 import com.example.model.CarDatabase;
-import com.example.model.Person;
-import com.example.model.PersonDatabase;
 import com.example.model.Truck;
 import com.example.model.Van;
 
@@ -20,7 +18,6 @@ class CompanyControl {
 	private final ConsolePrinter consolePrinter = new ConsolePrinter();
 	private final DataReader dataReader = new DataReader(consolePrinter);
 	private CarDatabase carDatabase;
-	private final PersonDatabase personDatabase = new PersonDatabase();
 	private final FileManager fileManager;
 
 	public CompanyControl() {
@@ -48,9 +45,7 @@ class CompanyControl {
 					CarType carType = getCarType();
 					addNewCar(carType);
 				}
-				case ADD_PERSON -> addNewPerson();
 				case SHOW_CARS -> showAllCars();
-				case SHOW_PEOPLE -> showAllPeople();
 				case EXIT -> exitProgram();
 				default -> System.err.println("Incorrect input! Please try again.");
 			}
@@ -74,18 +69,11 @@ class CompanyControl {
 		return option;
 	}
 
-	private void showAllPeople() {
-		personDatabase.printPeople();
-	}
 
 	private void showAllCars() {
 		carDatabase.printCars();
 	}
 
-	private void addNewPerson() {
-		Person person = dataReader.createPerson();
-		personDatabase.addPerson(person);
-	}
 
 	private void addNewCar(CarType carType) {
 		switch (carType) {
@@ -149,9 +137,7 @@ class CompanyControl {
 	public enum Option {
 		EXIT(0, "exit the program"),
 		ADD_CAR(1, "add car"),
-		ADD_PERSON(2, "add person"),
-		SHOW_CARS(3, "show all cars"),
-		SHOW_PEOPLE(4, "show all people");
+		SHOW_CARS(2, "show all cars");
 
 		private final int optionNumber;
 		private final String description;

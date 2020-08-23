@@ -10,7 +10,6 @@ import java.io.ObjectOutputStream;
 import com.example.exception.DataExportException;
 import com.example.exception.DataImportException;
 import com.example.model.CarDatabase;
-import com.example.model.PersonDatabase;
 
 public class SerializableFileManager implements FileManager {
 	private static final String CAR_DATABASE = "cardatabase.o";
@@ -33,21 +32,6 @@ public class SerializableFileManager implements FileManager {
 
 	}
 
-	@Override
-	public PersonDatabase importPersonDatabase() {
-		try (
-				FileInputStream fis = new FileInputStream(PERSON_DATABASE);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-		) {
-			return (PersonDatabase) ois.readObject();
-		} catch (FileNotFoundException e) {
-			throw new DataImportException(PERSON_DATABASE + " file not found!");
-		} catch (ClassNotFoundException e) {
-			throw new DataImportException("Error reading data from the file " + PERSON_DATABASE);
-		} catch (IOException e) {
-			throw new DataExportException("Incompatible data type in the file " + PERSON_DATABASE);
-		}
-	}
 
 	@Override
 	public void exportCarData(CarDatabase carDatabase) {
@@ -63,17 +47,4 @@ public class SerializableFileManager implements FileManager {
 		}
 	}
 
-	@Override
-	public void exportPersonData(PersonDatabase personDatabase) {
-		try (
-				FileOutputStream fos = new FileOutputStream(PERSON_DATABASE);
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-		) {
-			oos.writeObject(personDatabase);
-		} catch (FileNotFoundException e) {
-			throw new DataExportException(CAR_DATABASE + " file not found!");
-		} catch (IOException e) {
-			throw new DataExportException("Error writing data to the file " + CAR_DATABASE);
-		}
-	}
 }

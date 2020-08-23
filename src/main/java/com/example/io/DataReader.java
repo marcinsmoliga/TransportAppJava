@@ -2,8 +2,6 @@ package com.example.io;
 
 import java.util.Scanner;
 
-import com.example.model.Car;
-import com.example.model.Person;
 import com.example.model.Truck;
 import com.example.model.Van;
 
@@ -15,16 +13,6 @@ public class DataReader {
 		this.consolePrinter = consolePrinter;
 	}
 
-	public Person createPerson() {
-		consolePrinter.printNextLine("Enter first name: ");
-		String firstName = sc.nextLine();
-		consolePrinter.printNextLine("Enter last name: ");
-		String lastName = sc.nextLine();
-		consolePrinter.printNextLine("Enter year of birth: ");
-		int year = sc.nextInt();
-
-		return new Person(firstName, lastName, year);
-	}
 
 	public Truck createTruck() {
 		consolePrinter.printNextLine("Enter brand: ");
