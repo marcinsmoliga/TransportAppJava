@@ -8,17 +8,12 @@ import com.example.model.Van;
 public class CompanyControl {
     private final DataReader dataReader = new DataReader();
     private final VehicleDatabase vehicleDatabase = new VehicleDatabase();
-    private final static int EXIT = 0;
-    private final static int ADD_TRUCK = 1;
-    private final static int SHOW_ALL_TRUCKS = 2;
-    private final static int ADD_VAN = 3;
-    private final static int SHOW_ALL_VANS = 4;
 
     public void startProgram() {
-        int option;
+        Option option;
         do {
             printMenu();
-            option = dataReader.getInt();
+            option = Option.getOptionFromInt(dataReader.getInt());
             switch (option) {
                 case EXIT -> exitProgram();
                 case ADD_TRUCK -> addNewTruck();
@@ -26,7 +21,7 @@ public class CompanyControl {
                 case ADD_VAN -> addNewVan();
                 case SHOW_ALL_VANS -> showAllVans();
             }
-        } while (option != EXIT);
+        } while (option != Option.EXIT);
     }
 
     private void showAllVans() {
@@ -55,11 +50,9 @@ public class CompanyControl {
 
     private void printMenu() {
         System.out.println("LoadAndGo");
-        System.out.println(" " + EXIT + " - exit the program\n " +
-                ADD_TRUCK + " - add new truck to the database\n " +
-                SHOW_ALL_TRUCKS + " - retrieve all trucks from the database\n " +
-                ADD_VAN + " - add new van to the database\n " +
-                SHOW_ALL_VANS + " - retrieve all vans from the database");
+        for (Option option : Option.values()) {
+            System.out.println(option);
+        }
         System.out.print("Choose option: ");
     }
 }
