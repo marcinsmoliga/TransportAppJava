@@ -1,51 +1,21 @@
 package com.example.model;
 
-public class Truck {
+public class Truck extends Vehicle {
     private String brand;
     private String vehicleRegistrationPlate;
     private int regYear;
 
-    public Truck(String brand, String vehicleRegistrationNumber, int regYear) {
-        this(brand, vehicleRegistrationNumber);
+    public Truck(String brand, String vehicleRegistrationPlate, int regYear) {
+        this.brand = brand;
+        this.vehicleRegistrationPlate = vehicleRegistrationPlate;
         this.regYear = regYear;
     }
 
-    public Truck(String brand, String vehicleRegistrationPlate) {
-        this.brand = brand;
-        this.vehicleRegistrationPlate = vehicleRegistrationPlate;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getVehicleRegistrationPlate() {
-        return vehicleRegistrationPlate;
-    }
-
-    public void setVehicleRegistrationPlate(String vehicleRegistrationPlate) {
-        this.vehicleRegistrationPlate = vehicleRegistrationPlate;
-    }
-
-    public int getRegYear() {
-        return regYear;
-    }
-
-    public void setRegYear(int regYear) {
-        this.regYear = regYear;
-    }
 
     public void printInfo() {
-        String info = "Vehicle registration plate: " + vehicleRegistrationPlate
-                + " Brand: " + brand;
+        String info = "Vehicle registration plate: " + getVehicleRegistrationPlate()
+                + " Brand: " + getBrand() + " Year of registration: " + getRegYear();
 
-        if (regYear != 0) {
-            info +=" Year of registration: " + regYear;
-        }
         System.out.println(info);
     }
 }

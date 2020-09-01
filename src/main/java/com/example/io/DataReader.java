@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.example.model.Truck;
 
 public class DataReader {
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     public Truck createTruck() {
         System.out.print("Enter the brand name: ");
@@ -23,8 +23,11 @@ public class DataReader {
         sc.close();
     }
 
-
-    private void printMenu() {
-
+    public int getInt() {
+        int number = sc.nextInt();
+        sc.nextLine();
+        return number;
     }
+
+
 }

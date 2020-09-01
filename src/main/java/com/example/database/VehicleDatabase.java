@@ -24,5 +24,7 @@ public class VehicleDatabase {
                 trucks[i].printInfo();
             }
         }
+        System.out.println();
+
     }
 }
