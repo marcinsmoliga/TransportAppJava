@@ -2,53 +2,61 @@ package com.example.database;
 
 import com.example.model.Truck;
 import com.example.model.Van;
+import com.example.model.Vehicle;
 
 public class VehicleDatabase {
     private final static int MAX_VEHICLE = 1000;
-    private final Truck[] trucks = new Truck[MAX_VEHICLE];
-    private final Van[] vans = new Van[MAX_VEHICLE];
-    private int truckNumber = 0;
-    private int vanNumber = 0;
+    private final Vehicle[] vehicles = new Vehicle[MAX_VEHICLE];
+    private int vehicleNumber = 0;
+
 
     public void addTruck(Truck truck) {
-        if (truckNumber < MAX_VEHICLE) {
-            trucks[truckNumber] = truck;
-            truckNumber++;
+        if (vehicleNumber < MAX_VEHICLE) {
+            vehicles[vehicleNumber] = truck;
+            vehicleNumber++;
         } else {
             System.out.println("It is not possible to add another vehicle. There is no space in the database.");
         }
     }
 
     public void printTrucks() {
-        if (truckNumber == 0) {
-            System.out.println("The database is empty.");
-        } else {
-            for (int i = 0; i < truckNumber; i++) {
-                trucks[i].printInfo();
+        int truckNumber = 0;
+
+        for (int i = 0; i < vehicleNumber; i++) {
+            if (vehicles[i] instanceof Truck) {
+                System.out.println(vehicles[i]);
+                truckNumber++;
             }
         }
-        System.out.println();
 
+        if (truckNumber == 0) {
+            System.out.println("No trucks in the database.");
+        }
+        System.out.println();
     }
 
     public void addVan(Van van) {
-        if (vanNumber < MAX_VEHICLE) {
-            vans[vanNumber] = van;
-            vanNumber++;
+        if (vehicleNumber < MAX_VEHICLE) {
+            vehicles[vehicleNumber] = van;
+            vehicleNumber++;
         } else {
             System.out.println("It is not possible to add another vehicle. There is no space in the database.");
         }
     }
 
     public void printVans() {
-        if (vanNumber == 0) {
-            System.out.println("The database is empty.");
-        } else {
-            for (int i = 0; i < vanNumber; i++) {
-                vans[i].printInfo();
+        int vanNumber = 0;
+
+        for (int i = 0; i < vehicleNumber; i++) {
+            if (vehicles[i] instanceof Van) {
+                System.out.println(vehicles[i]);
+                vanNumber++;
             }
         }
-        System.out.println();
 
+        if (vanNumber == 0) {
+            System.out.println("No vanes in the database.");
+        }
+        System.out.println();
     }
 }

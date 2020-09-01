@@ -1,12 +1,12 @@
 package com.example.model;
 
+import java.util.Objects;
+
 public class Van extends Vehicle {
     private int euroPalletsNumber;
 
     public Van(String brand, String vehicleRegistrationPlate, int regYear, int euroPalletsNumber) {
-        this.setBrand(brand);
-        this.setVehicleRegistrationPlate(vehicleRegistrationPlate);
-        this.setRegYear(regYear);
+        super(brand, vehicleRegistrationPlate, regYear);
         this.euroPalletsNumber = euroPalletsNumber;
     }
 
@@ -17,12 +17,21 @@ public class Van extends Vehicle {
     public void setEuroPalletsNumber(int euroPalletsNumber) {
         this.euroPalletsNumber = euroPalletsNumber;
     }
+    @Override
+    public String toString() {
+        return super.toString() + "Number of Euro Pallets: " + euroPalletsNumber;
+    }
 
-    public void printInfo() {
-        String info = "Vehicle registration plate: " + getVehicleRegistrationPlate()
-                + " Brand: " + getBrand() + " Year of registration: " + getRegYear()
-                + " Number of Euro pallets: " + euroPalletsNumber;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Van van = (Van) o;
+        return euroPalletsNumber == van.euroPalletsNumber;
+    }
 
-        System.out.println(info);
+    @Override
+    public int hashCode() {
+        return Objects.hash(euroPalletsNumber);
     }
 }

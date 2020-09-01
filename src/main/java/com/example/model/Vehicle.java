@@ -5,6 +5,12 @@ public class Vehicle {
     private String vehicleRegistrationPlate;
     private int regYear;
 
+    public Vehicle(String brand, String vehicleRegistrationPlate, int regYear) {
+        this.brand = brand;
+        this.vehicleRegistrationPlate = vehicleRegistrationPlate;
+        this.regYear = regYear;
+    }
+
     public String getBrand() {
         return brand;
     }
@@ -27,5 +33,11 @@ public class Vehicle {
 
     public void setRegYear(int regYear) {
         this.regYear = regYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle registration plate: " + getVehicleRegistrationPlate()
+                + " Brand: " + getBrand() + " Year of registration: " + getRegYear() + " ";
     }
 }

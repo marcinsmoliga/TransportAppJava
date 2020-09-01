@@ -1,13 +1,13 @@
 package com.example.model;
 
+import java.util.Objects;
+
 public class Truck extends Vehicle {
     private String tachographModel;
 
 
     public Truck(String brand, String vehicleRegistrationPlate, int regYear, String tachographModel) {
-        this.setBrand(brand);
-        this.setVehicleRegistrationPlate(vehicleRegistrationPlate);
-        this.setRegYear(regYear);
+        super(brand, vehicleRegistrationPlate, regYear);
         this.tachographModel = tachographModel;
     }
 
@@ -19,11 +19,21 @@ public class Truck extends Vehicle {
         this.tachographModel = tachographModel;
     }
 
-    public void printInfo() {
-        String info = "Vehicle registration plate: " + getVehicleRegistrationPlate()
-                + " Brand: " + getBrand() + " Year of registration: " + getRegYear()
-                + " Tachograph model: " + tachographModel;
+    @Override
+    public String toString() {
+       return super.toString() + "Tachograph model: " + tachographModel;
+    }
 
-        System.out.println(info);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return Objects.equals(tachographModel, truck.tachographModel);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tachographModel);
     }
 }
