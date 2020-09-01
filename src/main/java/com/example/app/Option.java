@@ -1,5 +1,7 @@
 package com.example.app;
 
+import com.example.app.exception.NoSuchOptionException;
+
 public enum Option {
     EXIT(0,"exit the program"),
     ADD_TRUCK(1,"add new truck to the database"),
@@ -28,7 +30,11 @@ public enum Option {
         return actionNumber + " - " + description;
     }
 
-    public static Option getOptionFromInt(int number) {
-        return Option.values()[number];
+    public static Option getOptionFromInt(int option) throws NoSuchOptionException {
+        try {
+        return Option.values()[option];
+    } catch (ArrayIndexOutOfBoundsException e) {
+            throw new NoSuchOptionException("Incorrect input: " + option + ". Please choose the option again: " );
+        }
     }
 }

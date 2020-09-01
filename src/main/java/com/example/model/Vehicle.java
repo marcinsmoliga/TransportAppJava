@@ -35,7 +35,7 @@ public class Vehicle {
         this.regYear = regYear;
     }
 
-    @Override
+
     public String toString() {
         return "Vehicle registration plate: " + getVehicleRegistrationPlate()
                 + " Brand: " + getBrand() + " Year of registration: " + getRegYear() + " ";
