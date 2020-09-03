@@ -2,10 +2,14 @@ package com.example.app;
 
 import java.util.InputMismatchException;
 
+import com.example.app.exception.DataExportException;
+import com.example.app.exception.DataImportException;
 import com.example.app.exception.NoSuchOptionException;
 import com.example.database.VehicleDatabase;
 import com.example.io.ConsolePrinter;
 import com.example.io.DataReader;
+import com.example.io.file.FileManager;
+import com.example.io.file.FileManagerBuilder;
 import com.example.model.Truck;
 import com.example.model.Van;
 import com.example.model.Vehicle;
@@ -13,7 +17,20 @@ import com.example.model.Vehicle;
 public class CompanyControl {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
     private final DataReader dataReader = new DataReader(consolePrinter);
-    private final VehicleDatabase vehicleDatabase = new VehicleDatabase();
+    private final FileManager fileManager;
+    private VehicleDatabase vehicleDatabase;
+
+    public CompanyControl() {
+        fileManager = new FileManagerBuilder(consolePrinter, dataReader).build();
+        try {
+            vehicleDatabase = fileManager.importData();
+            consolePrinter.printNextLine("Successfully retrieved data from the database.");
+        } catch (DataImportException e) {
+            consolePrinter.printNextLine(e.getMessage());
+            consolePrinter.printNextLine("A new database has been created.");
+            vehicleDatabase = new VehicleDatabase();
+        }
+    }
 
     public void startProgram() {
         Option option;
@@ -62,8 +79,16 @@ public class CompanyControl {
     }
 
     private void exitProgram() {
-        System.out.println("");
+        consolePrinter.printNextLine("Saving data to the database.");
+        try {
+            fileManager.exportData(vehicleDatabase);
+            consolePrinter.printNextLine("Data saved successfully.");
+        } catch (DataExportException e) {
+            consolePrinter.printNextLine(e.getMessage());
+        }
         dataReader.closeReader();
+        consolePrinter.printNextLine("Closing the program.");
+
 
     }
 

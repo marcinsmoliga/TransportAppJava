@@ -1,10 +1,12 @@
 package com.example.database;
 
+import java.io.Serializable;
+
 import com.example.model.Truck;
 import com.example.model.Van;
 import com.example.model.Vehicle;
 
-public class VehicleDatabase {
+public class VehicleDatabase implements Serializable {
     private final static int MAX_VEHICLE = 1000;
     private final Vehicle[] vehicles = new Vehicle[MAX_VEHICLE];
     private int vehicleNumber = 0;
