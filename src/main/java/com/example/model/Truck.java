@@ -3,6 +3,7 @@ package com.example.model;
 import java.util.Objects;
 
 public class Truck extends Vehicle {
+    public static final String TYPE = "Truck";
     private String tachographModel;
 
 
@@ -22,6 +23,16 @@ public class Truck extends Vehicle {
     @Override
     public String toString() {
        return super.toString() + "Tachograph model: " + tachographModel;
+    }
+
+    @Override
+    public String toCsv() {
+        return TYPE + ";" +
+                getBrand() + ";" +
+                getVehicleRegistrationPlate() + ";" +
+                getRegYear() + ";" +
+                tachographModel;
+
     }
 
     @Override

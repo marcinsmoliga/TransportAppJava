@@ -20,16 +20,7 @@ public class VehicleDatabase implements Serializable {
         return result;
     }
 
-
-    public void addTruck(Truck truck) {
-        addVehicle(truck);
-    }
-
-    public void addVan(Van van) {
-        addVehicle(van);
-    }
-
-    private void addVehicle(Vehicle vehicle) {
+    public void addVehicle(Vehicle vehicle) {
         if (vehicleNumber >= MAX_VEHICLE) {
             throw new ArrayIndexOutOfBoundsException("Vehicle cannot be added. There is no free space in the database");
         }

@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 
 import com.example.app.exception.DataExportException;
 import com.example.app.exception.DataImportException;
+import com.example.app.exception.InvalidDataException;
 import com.example.app.exception.NoSuchOptionException;
 import com.example.database.VehicleDatabase;
 import com.example.io.ConsolePrinter;
@@ -25,7 +26,7 @@ public class CompanyControl {
         try {
             vehicleDatabase = fileManager.importData();
             consolePrinter.printNextLine("Successfully retrieved data from the database.");
-        } catch (DataImportException e) {
+        } catch (DataImportException | InvalidDataException e) {
             consolePrinter.printNextLine(e.getMessage());
             consolePrinter.printNextLine("A new database has been created.");
             vehicleDatabase = new VehicleDatabase();
@@ -70,7 +71,7 @@ public class CompanyControl {
 
     private void addNewVan() {
         Van van = dataReader.createVan();
-        vehicleDatabase.addVan(van);
+        vehicleDatabase.addVehicle(van);
     }
 
     private void showAllTrucks() {
@@ -95,7 +96,7 @@ public class CompanyControl {
     private void addNewTruck() {
         try {
             Truck truck = dataReader.createTruck();
-            vehicleDatabase.addTruck(truck);
+            vehicleDatabase.addVehicle(truck);
         } catch (InputMismatchException e) {
             consolePrinter.printNextLine("The vehicle can not be added to the database " +
                     " the year of registration must be a number. Please try again.");

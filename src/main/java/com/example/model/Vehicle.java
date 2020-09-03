@@ -42,4 +42,6 @@ public abstract class Vehicle implements Serializable {
         return "Vehicle registration plate: " + getVehicleRegistrationPlate()
                 + " Brand: " + getBrand() + " Year of registration: " + getRegYear() + " ";
     }
+
+    public abstract String toCsv();
 }
