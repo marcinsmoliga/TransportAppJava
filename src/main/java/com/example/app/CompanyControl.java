@@ -41,11 +41,39 @@ public class CompanyControl {
             switch (option) {
                 case EXIT -> exitProgram();
                 case ADD_TRUCK -> addNewTruck();
-                case SHOW_ALL_TRUCKS -> showAllTrucks();
                 case ADD_VAN -> addNewVan();
+                case SHOW_ALL_TRUCKS -> showAllTrucks();
                 case SHOW_ALL_VANS -> showAllVans();
+                case DELETE_TRUCK -> deleteTruck();
+                case DELETE_VAN -> deleteVan();
             }
         } while (option != Option.EXIT);
+    }
+
+    private void deleteVan() {
+        try {
+            Van van = dataReader.createVan();
+            if (vehicleDatabase.removeVehicle(van)) {
+                consolePrinter.printNextLine("Successful removal of the vehicle from the database");
+            } else {
+                consolePrinter.printNextLine("Can not find the selected vehicle in the database");
+            }
+        } catch (InputMismatchException e) {
+            consolePrinter.printNextLine("Invalid data was given when creating the vehicle");
+        }
+    }
+
+    private void deleteTruck() {
+        try {
+            Truck truck = dataReader.createTruck();
+            if (vehicleDatabase.removeVehicle(truck)) {
+                consolePrinter.printNextLine("Successful removal of the vehicle from the database");
+            } else {
+                consolePrinter.printNextLine("Can not find the selected vehicle in the database");
+            }
+        } catch (InputMismatchException e) {
+            consolePrinter.printNextLine("Invalid data was given when creating the vehicle");
+        }
     }
 
     private Option getOption() {
@@ -89,8 +117,6 @@ public class CompanyControl {
         }
         dataReader.closeReader();
         consolePrinter.printNextLine("Closing the program.");
-
-
     }
 
     private void addNewTruck() {
