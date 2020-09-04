@@ -44,4 +44,9 @@ public class Van extends Vehicle {
     public int hashCode() {
         return Objects.hash(euroPalletsNumber);
     }
+
+    @Override
+    public int compareTo(Vehicle vehicle) {
+        return getVehicleRegistrationPlate().compareToIgnoreCase(vehicle.getVehicleRegistrationPlate());
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.app;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 import com.example.app.exception.DataExportException;
@@ -14,6 +15,7 @@ import com.example.io.file.FileManagerBuilder;
 import com.example.model.Truck;
 import com.example.model.Van;
 import com.example.model.Vehicle;
+import com.example.model.comparator.RegistrationPlateComparator;
 
 public class CompanyControl {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
@@ -93,8 +95,14 @@ public class CompanyControl {
     }
 
     private void showAllVans() {
-        Vehicle[] vehicles = vehicleDatabase.getVehicles();
+        Vehicle[] vehicles = getSortedVehicles();
         consolePrinter.printVans(vehicles);
+    }
+
+    private Vehicle[] getSortedVehicles() {
+        Vehicle[] vehicles = vehicleDatabase.getVehicles();
+        Arrays.sort(vehicles, new RegistrationPlateComparator());
+        return vehicles;
     }
 
     private void addNewVan() {
@@ -103,7 +111,7 @@ public class CompanyControl {
     }
 
     private void showAllTrucks() {
-        Vehicle[] vehicles = vehicleDatabase.getVehicles();
+        Vehicle[] vehicles = getSortedVehicles();
         consolePrinter.printTrucks(vehicles);
     }
 

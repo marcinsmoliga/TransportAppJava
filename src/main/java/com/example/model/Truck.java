@@ -47,4 +47,9 @@ public class Truck extends Vehicle {
     public int hashCode() {
         return Objects.hash(tachographModel);
     }
+
+    @Override
+    public int compareTo(Vehicle vehicle) {
+        return getVehicleRegistrationPlate().compareToIgnoreCase(vehicle.getVehicleRegistrationPlate());
+    }
 }

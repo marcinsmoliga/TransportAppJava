@@ -2,7 +2,7 @@ package com.example.model;
 
 import java.io.Serializable;
 
-public abstract class Vehicle implements Serializable {
+public abstract class Vehicle implements Serializable, Comparable<Vehicle> {
     private String brand;
     private String vehicleRegistrationPlate;
     private int regYear;

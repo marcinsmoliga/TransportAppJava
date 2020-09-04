@@ -4,12 +4,12 @@ import com.example.app.exception.NoSuchOptionException;
 
 public enum Option {
     EXIT(0,"exit the program"),
-    ADD_TRUCK(1,"add new truck to the database"),
-    SHOW_ALL_TRUCKS(3,"retrieve all trucks from the database"),
-    ADD_VAN(2,"add new van to the database"),
-    SHOW_ALL_VANS(4,"retrieve all vans from the database"),
-    DELETE_TRUCK(5, "remove a truck from the database"),
-    DELETE_VAN(6, "remove a van from the database");
+    ADD_TRUCK(1,"add new truck"),
+    ADD_VAN(2,"add new van"),
+    SHOW_ALL_TRUCKS(3,"retrieve all trucks"),
+    SHOW_ALL_VANS(4,"retrieve all vans"),
+    DELETE_TRUCK(5, "remove a truck"),
+    DELETE_VAN(6, "remove a van");
 
     private final int actionNumber;
     private final String description;
