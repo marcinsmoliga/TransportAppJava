@@ -9,7 +9,9 @@ public enum Option {
     SHOW_ALL_TRUCKS(3,"retrieve all trucks"),
     SHOW_ALL_VANS(4,"retrieve all vans"),
     DELETE_TRUCK(5, "remove a truck"),
-    DELETE_VAN(6, "remove a van");
+    DELETE_VAN(6, "remove a van"),
+    ADD_DRIVER(7, "add new driver"),
+    SHOW_ALL_DRIVERS(8, "retrievee all drivers");
 
     private final int actionNumber;
     private final String description;

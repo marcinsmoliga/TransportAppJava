@@ -38,6 +38,8 @@ public abstract class Employee implements Serializable {
 		this.pesel = pesel;
 	}
 
+	public abstract String toCsv();
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {

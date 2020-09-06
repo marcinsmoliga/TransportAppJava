@@ -1,13 +1,15 @@
 package com.example.io;
 
-import com.example.database.VehicleDatabase;
+import java.util.Collection;
+
+import com.example.model.Employee;
 import com.example.model.Truck;
 import com.example.model.Van;
 import com.example.model.Vehicle;
 
 public class ConsolePrinter {
 
-    public void printTrucks(Vehicle[] vehicles) {
+    public void printTrucks(Collection<Vehicle> vehicles) {
         int truckNumber = 0;
 
         for (Vehicle vehicle : vehicles) {
@@ -23,7 +25,7 @@ public class ConsolePrinter {
         printNextLine("");
     }
 
-    public void printVans(Vehicle[] vehicles) {
+    public void printVans(Collection<Vehicle> vehicles) {
         int vanNumber = 0;
 
         for (Vehicle vehicle : vehicles) {
@@ -35,6 +37,22 @@ public class ConsolePrinter {
 
         if (vanNumber == 0) {
             printNextLine("No vanes in the database.");
+        }
+        printNextLine("");
+    }
+
+    public void printEmployees(Collection<Employee> employees) {
+        int empNumber = 0;
+
+        for (Employee employee : employees) {
+            if (employee instanceof Employee) {
+                printNextLine(employee.toString());
+                empNumber++;
+            }
+        }
+
+        if (empNumber == 0) {
+            printNextLine("No employees in the database.");
         }
         printNextLine("");
     }

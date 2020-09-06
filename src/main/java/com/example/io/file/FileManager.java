@@ -1,8 +1,8 @@
 package com.example.io.file;
 
-import com.example.database.VehicleDatabase;
+import com.example.database.CompanyDatabase;
 
 public interface FileManager {
-    VehicleDatabase importData();
-    void exportData(VehicleDatabase vehicleDatabase);
+    CompanyDatabase importData();
+    void exportData(CompanyDatabase companyDatabase);
 }
