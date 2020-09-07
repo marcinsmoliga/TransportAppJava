@@ -12,6 +12,7 @@ import com.example.app.exception.DataExportException;
 import com.example.app.exception.DataImportException;
 import com.example.app.exception.InvalidDataException;
 import com.example.database.CompanyDatabase;
+import com.example.model.CsvConvertible;
 import com.example.model.Driver;
 import com.example.model.Employee;
 import com.example.model.Truck;
@@ -104,29 +105,24 @@ public class CsvFileManager implements FileManager {
 
     private void exportEmployees(CompanyDatabase companyDatabase) {
         Collection<Employee> employees = companyDatabase.getEmployees().values();
-        try (
-                FileWriter fw = new FileWriter(FILE_EMPLOYEES);
-                BufferedWriter bw = new BufferedWriter(fw);
-        ) {
-            for (Employee employee : employees) {
-                bw.write(employee.toCsv());
-            }
-        } catch (IOException e) {
-            throw new DataExportException("Error writing data to the file " + FILE_EMPLOYEES);
-        }
+        exportToCsv(employees, FILE_EMPLOYEES);
     }
 
     private void exportVehicles(CompanyDatabase companyDatabase) {
         Collection<Vehicle> vehicles = companyDatabase.getVehicles().values();
+        exportToCsv(vehicles, FILE_VEHICLES);
+    }
+
+    private <T extends CsvConvertible> void exportToCsv(Collection<T> collection, String fileName) {
         try (
-                FileWriter fw = new FileWriter(FILE_VEHICLES);
+                FileWriter fw = new FileWriter(fileName);
                 BufferedWriter bw = new BufferedWriter(fw);
         ) {
-            for (Vehicle vehicle : vehicles) {
-                bw.write(vehicle.toCsv());
+            for (T element : collection) {
+                bw.write(element.toCsv());
             }
         } catch (IOException e) {
-            throw new DataExportException("Error writing data to the file " + FILE_VEHICLES);
+            throw new DataExportException("Error writing data to the file " + fileName);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.example.model;
 
 import java.io.Serializable;
 
-public abstract class Vehicle implements Serializable, Comparable<Vehicle> {
+public abstract class Vehicle implements Serializable, Comparable<Vehicle>, CsvConvertible {
     private String brand;
     private String vehicleRegistrationPlate;
     private int regYear;
@@ -42,6 +42,4 @@ public abstract class Vehicle implements Serializable, Comparable<Vehicle> {
         return "Vehicle registration plate: " + getVehicleRegistrationPlate()
                 + " Brand: " + getBrand() + " Year of registration: " + getRegYear() + " ";
     }
-
-    public abstract String toCsv();
 }
