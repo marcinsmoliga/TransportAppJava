@@ -1,5 +1,6 @@
 package com.example.app;
 
+import java.util.Comparator;
 import java.util.InputMismatchException;
 
 import com.example.app.exception.DataExportException;
@@ -13,9 +14,10 @@ import com.example.io.DataReader;
 import com.example.io.file.FileManager;
 import com.example.io.file.FileManagerBuilder;
 import com.example.model.Driver;
+import com.example.model.Employee;
 import com.example.model.Truck;
 import com.example.model.Van;
-import com.example.model.comparator.RegistrationPlateComparator;
+import com.example.model.Vehicle;
 
 public class CompanyControl {
     private final ConsolePrinter consolePrinter = new ConsolePrinter();
@@ -56,7 +58,7 @@ public class CompanyControl {
 
     private void showAllDrivers() {
         consolePrinter.printEmployees(companyDatabase.getSortedEmployees(
-                (e1, e2) -> e1.getLastName().compareToIgnoreCase(e2.getLastName()))
+                Comparator.comparing(Employee::getLastName, String.CASE_INSENSITIVE_ORDER))
         );
     }
 
@@ -113,7 +115,7 @@ public class CompanyControl {
 
     private void showAllVans() {
         consolePrinter.printVans(companyDatabase.getSortedVehicles(
-                (v1, v2) -> v1.getVehicleRegistrationPlate().compareToIgnoreCase(v2.getVehicleRegistrationPlate()))
+                Comparator.comparing(Vehicle::getVehicleRegistrationPlate, String.CASE_INSENSITIVE_ORDER))
         );
     }
 
@@ -123,8 +125,8 @@ public class CompanyControl {
     }
 
     private void showAllTrucks() {
-        consolePrinter.printTrucks((companyDatabase.getSortedVehicles(
-                (v1, v2) -> v1.getVehicleRegistrationPlate().compareToIgnoreCase(v2.getVehicleRegistrationPlate())))
+        consolePrinter.printTrucks(companyDatabase.getSortedVehicles(
+                Comparator.comparing(Vehicle::getVehicleRegistrationPlate, String.CASE_INSENSITIVE_ORDER))
         );
     }
 

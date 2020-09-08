@@ -3,15 +3,15 @@ package com.example.app;
 import com.example.app.exception.NoSuchOptionException;
 
 public enum Option {
-    EXIT(0,"exit the program"),
     ADD_TRUCK(1,"add new truck"),
     ADD_VAN(2,"add new van"),
+    ADD_DRIVER(3, "add new driver"),
     SHOW_ALL_TRUCKS(3,"retrieve all trucks"),
-    SHOW_ALL_VANS(4,"retrieve all vans"),
-    DELETE_TRUCK(5, "remove a truck"),
-    DELETE_VAN(6, "remove a van"),
-    ADD_DRIVER(7, "add new driver"),
-    SHOW_ALL_DRIVERS(8, "retrievee all drivers");
+    SHOW_ALL_VANS(5,"retrieve all vans"),
+    SHOW_ALL_DRIVERS(6, "retrieve all drivers"),
+    DELETE_TRUCK(7, "remove a truck"),
+    DELETE_VAN(8, "remove a van"),
+    EXIT(0,"exit the program");
 
     private final int actionNumber;
     private final String description;
