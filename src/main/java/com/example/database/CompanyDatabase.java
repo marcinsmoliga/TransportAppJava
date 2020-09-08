@@ -1,7 +1,11 @@
 package com.example.database;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.app.exception.VehicleAlreadyExistsException;
@@ -14,6 +18,18 @@ public class CompanyDatabase implements Serializable {
 
 	public Map<String,Employee> getEmployees() {
 		return employees;
+	}
+
+	public Collection<Vehicle> getSortedVehicles(Comparator<Vehicle> comparator) {
+		List<Vehicle> list = new ArrayList<>(vehicles.values());
+		list.sort(comparator);
+		return list;
+	}
+
+	public Collection<Employee> getSortedEmployees(Comparator<Employee> comparator) {
+		List<Employee> list = new ArrayList<>(employees.values());
+		list.sort(comparator);
+		return list;
 	}
 
 	public Map<String,Vehicle> getVehicles() {

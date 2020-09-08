@@ -1,8 +1,6 @@
 package com.example.app;
 
-import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 import com.example.app.exception.DataExportException;
 import com.example.app.exception.DataImportException;
@@ -15,10 +13,8 @@ import com.example.io.DataReader;
 import com.example.io.file.FileManager;
 import com.example.io.file.FileManagerBuilder;
 import com.example.model.Driver;
-import com.example.model.Employee;
 import com.example.model.Truck;
 import com.example.model.Van;
-import com.example.model.Vehicle;
 import com.example.model.comparator.RegistrationPlateComparator;
 
 public class CompanyControl {
@@ -114,7 +110,7 @@ public class CompanyControl {
     }
 
     private void showAllVans() {
-        consolePrinter.printVans(companyDatabase.getVehicles().values());
+        consolePrinter.printVans(companyDatabase.getSortedVehicles(new RegistrationPlateComparator()));
     }
 
     private void addNewVan() {
@@ -123,7 +119,7 @@ public class CompanyControl {
     }
 
     private void showAllTrucks() {
-        consolePrinter.printTrucks(companyDatabase.getVehicles().values());
+        consolePrinter.printTrucks(companyDatabase.getSortedVehicles(new RegistrationPlateComparator()));
     }
 
     private void exitProgram() {
