@@ -43,7 +43,6 @@ public class CompanyControl {
             printMenu();
             option = getOption();
             switch (option) {
-                case EXIT -> exitProgram();
                 case ADD_TRUCK -> addNewTruck();
                 case ADD_VAN -> addNewVan();
                 case ADD_DRIVER -> addNewDriver();
@@ -52,6 +51,7 @@ public class CompanyControl {
                 case SHOW_ALL_DRIVERS -> showAllDrivers();
                 case DELETE_TRUCK -> deleteTruck();
                 case DELETE_VAN -> deleteVan();
+                case EXIT -> exitProgram();
             }
         } while (option != Option.EXIT);
     }
