@@ -55,7 +55,9 @@ public class CompanyControl {
     }
 
     private void showAllDrivers() {
-        consolePrinter.printEmployees(companyDatabase.getEmployees().values());
+        consolePrinter.printEmployees(companyDatabase.getSortedEmployees(
+                (e1, e2) -> e1.getLastName().compareToIgnoreCase(e2.getLastName()))
+        );
     }
 
     private void addNewDriver() {
@@ -110,7 +112,9 @@ public class CompanyControl {
     }
 
     private void showAllVans() {
-        consolePrinter.printVans(companyDatabase.getSortedVehicles(new RegistrationPlateComparator()));
+        consolePrinter.printVans(companyDatabase.getSortedVehicles(
+                (v1, v2) -> v1.getVehicleRegistrationPlate().compareToIgnoreCase(v2.getVehicleRegistrationPlate()))
+        );
     }
 
     private void addNewVan() {
@@ -119,7 +123,9 @@ public class CompanyControl {
     }
 
     private void showAllTrucks() {
-        consolePrinter.printTrucks(companyDatabase.getSortedVehicles(new RegistrationPlateComparator()));
+        consolePrinter.printTrucks((companyDatabase.getSortedVehicles(
+                (v1, v2) -> v1.getVehicleRegistrationPlate().compareToIgnoreCase(v2.getVehicleRegistrationPlate())))
+        );
     }
 
     private void exitProgram() {
